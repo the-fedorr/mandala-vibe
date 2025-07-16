@@ -35,7 +35,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "sergiy-mandala-vib-89"
-          entrypoint: "node index"
-          root: "/"
+          entrypoint: "index.js"
+          root: ""
           
           
