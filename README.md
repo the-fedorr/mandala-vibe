@@ -1,0 +1,1 @@
+TG bot for calculcating financial/date mandalas
