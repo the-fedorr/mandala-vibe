@@ -26,7 +26,4 @@ function calculateNeighborsMatrix(input) {
     return result;
 }
 
-module.exports = {
-    reflectString,
-    calculateNeighborsMatrix,
-};
+export { reflectString, calculateNeighborsMatrix };

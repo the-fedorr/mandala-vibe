@@ -1,6 +1,6 @@
-const TelegramBot = require('node-telegram-bot-api');
-const { processBirthday } = require('./modules/birthday');
-const { processDate } = require('./modules/date');
+import TelegramBot from 'node-telegram-bot-api';
+import { processBirthday } from './modules/birthday.js';
+import { processDate } from './modules/date.js';
 
 const token = process.env.TG_TOKEN;
 const bot = new TelegramBot(token, { polling: true });

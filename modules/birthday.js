@@ -1,5 +1,4 @@
-const { log } = require('console');
-const { reflectString, calculateNeighborsMatrix } = require('../utils');
+import { reflectString, calculateNeighborsMatrix } from '../utils/index.js';
 
 function processBirthday(date, bot, msg) {
   const chatId = msg.chat.id;
@@ -22,6 +21,4 @@ function processBirthday(date, bot, msg) {
 }
 
 
-module.exports = {
-  processBirthday,
-};
+export { processBirthday };

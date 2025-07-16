@@ -23,6 +23,4 @@ function parseDay(day) {
   return day;
 }
 
-module.exports = {
-  processDate,
-};
+export { processDate };
