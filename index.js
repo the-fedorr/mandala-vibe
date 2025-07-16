@@ -1,10 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
-const config = require('./config.json');
 const { processBirthday } = require('./modules/birthday');
 const { processDate } = require('./modules/date');
 
-// Bot initialization using config
-const bot = new TelegramBot(config.telegram.token, { polling: true });
+const token = process.env.TG_TOKEN;
+const bot = new TelegramBot(token, { polling: true });
 
 const locations = {
   home: '🏠 Додому',
