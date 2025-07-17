@@ -1,6 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { processBirthday } from './modules/birthday.js';
 import { processDate } from './modules/date.js';
+import { processFinance } from './modules/finance.js';
 
 const token = process.env.TG_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
@@ -71,7 +72,11 @@ bot.on('message', (msg) => {
     processBirthday(date, bot, msg);
     userStates[userId] = null;
   } else if (state === 'awaiting_finance') {
-    bot.sendMessage(chatId, `Розрахунок фінансового коду буде доступний тріііііііішечки пізніше.`);
+    const date = processDate(bot, msg);
+    if (!date) {
+      return null;
+    }
+    processFinance(date, bot, msg);
     userStates[userId] = null;
   }
   

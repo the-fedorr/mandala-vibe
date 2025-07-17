@@ -1,22 +1,16 @@
-function reflectString(input) {
+export function reflectString(input) {
     return [...input, ...[...input].reverse()].map(Number);
 }
 
-function reduceArrayNeighbors(input) {
+export function reduceArrayNeighbors(input) {
     const result = [];
     for (let i = 0; i < input.length - 1; i++) {
-        const sum = input[i] + input[i + 1];
-        if (sum > 9) {
-            const sumString = sum.toString();
-            result.push(Number(sumString[0]) + Number(sumString[1]));
-        } else {
-            result.push(sum);
-        }
+        result.push(s([input[i], input[i + 1]]));
     }
     return result;
 }
 
-function calculateNeighborsMatrix(input) {
+export function calculateNeighborsMatrix(input) {
     let neighborsSum = reduceArrayNeighbors(input);
     const result = [input, neighborsSum];
     while (neighborsSum.length > 1) {
@@ -26,4 +20,17 @@ function calculateNeighborsMatrix(input) {
     return result;
 }
 
-export { reflectString, calculateNeighborsMatrix };
+function s(inputs) {
+    const sum = inputs.reduce((acc, curr) => acc + Number(curr), 0);
+    let result = sum;
+    if (sum > 9) {
+        const sumString = sum.toString();
+        result = s([...sumString]);
+    }
+    return result;
+}
+
+export function calculateFinanceSequence([day, month, year]) {
+    const sum1 = [s([...day]), s([...month]), s([...year])]
+    return [...sum1, s(sum1)];
+}

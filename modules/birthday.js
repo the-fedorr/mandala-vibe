@@ -5,7 +5,8 @@ function processBirthday(date, bot, msg) {
   const userId = msg.from.id;
   const text = msg.text;
 
-  const reflectedData = reflectString(date);
+  const [day, month, year] = date;
+  const reflectedData = reflectString([...day, ...month, ...year]);
   const matrix = calculateNeighborsMatrix(reflectedData);
 
   const formattedMatrix = matrix.map((row, index) => {
@@ -14,8 +15,6 @@ function processBirthday(date, bot, msg) {
     }
     return row.join('\u00A0');
   }).join('\n');
-
-  console.log(formattedMatrix);
 
   bot.sendMessage(chatId, formattedMatrix);
 }

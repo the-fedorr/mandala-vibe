@@ -1,10 +1,12 @@
-function processDate(bot, msg) {
+export function processDate(bot, msg) {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const text = msg.text;
 
+  console.log(text);
+
   const [day, month, year] = text.split('.');
-  const date = new Date(year, month - 1, parseDay(day));
+  const date = new Date(year, month - 1, day);
 
   if (isNaN(date.getTime())) {
     bot.sendMessage(chatId, 'Некоректна дата. Спробуйте ще раз.');
@@ -12,15 +14,8 @@ function processDate(bot, msg) {
     return null;
   }
 
-  bot.sendMessage(chatId, `Введено дату: "${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}"`);
-  return [...day, ...month, ...year];
+  bot.sendMessage(chatId, `Розрахунок для "${day}.${month}.${year}"`);
+  return [day, month, year];
 }
 
-function parseDay(day) {
-  if (day.length === 1) {
-    return `0${day}`;
-  }
-  return day;
-}
 
-export { processDate };
